@@ -44,56 +44,7 @@
             pointer-events: none;
         }
 
-        .balloon {
-            position: absolute;
-            bottom: -100px;
-            animation: float 8s infinite ease-in-out;
-            width: 50px;
-            height: 70px;
-            background-color: #ffcccb;
-            border-radius: 50%;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-        }
-
-        @keyframes float {
-            0% {
-                transform: translateY(100%);
-            }
-            100% {
-                transform: translateY(-200%);
-            }
-        }
-
-        /* Popup */
-        .popup {
-            display: none;
-            position: fixed;
-            top: 50%;
-            left: 50%;
-            transform: translate(-50%, -50%);
-            padding: 20px;
-            background: white;
-            border-radius: 10px;
-            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
-            z-index: 1000;
-            text-align: center;
-            color: black;
-        }
-
-        .popup.show {
-            display: block;
-            animation: fadeIn 1s ease;
-        }
-
-        @keyframes fadeIn {
-            from {
-                opacity: 0;
-            }
-            to {
-                opacity: 1;
-            }
-        }
-
+        /* Estilo Swiper */
         .swiper-slide img {
             width: 100%;
             height: auto;
@@ -107,35 +58,25 @@
     <p>El contador está contando los segundos hasta el gran día:</p>
     <div id="countdown"></div>
 
-    <!-- Globos -->
-    <div class="balloon" style="left: 10%; animation-duration: 6s;"></div>
-    <div class="balloon" style="left: 50%; animation-duration: 8s; background-color: #ffd700;"></div>
-    <div class="balloon" style="left: 80%; animation-duration: 7s;"></div>
-
-    <!-- Popup -->
-    <div id="popup" class="popup">
-        <h2>¡Feliz Cumpleaños, mi amor! 🎉</h2>
-        <p>Eres la persona más especial en mi vida y quería sorprenderte con esta página. ❤️</p>
-        <div class="swiper-container">
-            <div class="swiper-wrapper">
-                <div class="swiper-slide"><img src="./images/foto1.jpg" alt="Foto 1"></div>
-                <div class="swiper-slide"><img src="./images/foto2.jpg" alt="Foto 2"></div>
-                <div class="swiper-slide"><img src="./images/foto3.jpg" alt="Foto 3"></div>
-            </div>
-            <!-- Botones de navegación -->
-            <div class="swiper-button-next"></div>
-            <div class="swiper-button-prev"></div>
+    <!-- Galería -->
+    <div class="swiper-container" style="width: 80%; margin: 0 auto;">
+        <div class="swiper-wrapper">
+            <div class="swiper-slide"><img src="Imagen1.jpg" alt="Imagen 1"></div>
+            <div class="swiper-slide"><img src="Imagen2.jpg" alt="Imagen 2"></div>
+            <div class="swiper-slide"><img src="Imagen3.jpg" alt="Imagen 3"></div>
+            <div class="swiper-slide"><img src="Imagen4.jpg" alt="Imagen 4"></div>
         </div>
+        <div class="swiper-button-next"></div>
+        <div class="swiper-button-prev"></div>
     </div>
 
-    <audio id="birthday-music" src="./mañanitas.mp3" preload="auto"></audio>
+    <audio id="birthday-music" src="mañanitas.mp3" loop></audio>
 
     <script src="https://cdn.jsdelivr.net/npm/canvas-confetti@1.5.1/dist/confetti.browser.min.js"></script>
     <script src="https://unpkg.com/swiper/swiper-bundle.min.js"></script>
     <script>
         const countdownDate = new Date("Dec 31, 2024 00:00:00").getTime();
         const countdownElement = document.getElementById("countdown");
-        const popup = document.getElementById("popup");
         const birthdayMusic = document.getElementById("birthday-music");
 
         function updateCountdown() {
@@ -144,7 +85,6 @@
 
             if (timeLeft <= 0) {
                 countdownElement.innerHTML = "¡Es tu cumpleaños! 🎉";
-                popup.classList.add("show");
                 birthdayMusic.play();
                 launchConfetti();
             } else {
@@ -161,8 +101,8 @@
             const confettiCanvas = document.getElementById('confetti-canvas');
             const myConfetti = confetti.create(confettiCanvas, { resize: true });
             myConfetti({
-                particleCount: 150,
-                spread: 70,
+                particleCount: 200,
+                spread: 100,
                 origin: { y: 0.6 },
             });
         }
